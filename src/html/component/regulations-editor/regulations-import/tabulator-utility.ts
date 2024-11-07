@@ -25,11 +25,15 @@ export const tabulatorOptions: Options = {
       dir: "asc",
     },
   ],
-  rowClickMenu: [
+  headerSort: true,
+  index: "id",
+  paginationSize: 10,
+  paginationSizeSelector: [5, 10, 20, 50, 100],
+  rowContextMenu: [
     {
       label: "Delete Row",
       action: function (_, row) {
-        row.delete();
+        void row.delete();
       },
     },
   ],

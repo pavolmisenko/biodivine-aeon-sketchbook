@@ -1,11 +1,5 @@
-import {
-  css,
-  LitElement,
-  type TemplateResult,
-  html,
-  unsafeCSS,
-  PropertyValues,
-} from "lit";
+import { css, LitElement, type TemplateResult, html, unsafeCSS } from "lit";
+import { map } from "lit/directives/map.js";
 import { customElement, state } from "lit/decorators.js";
 import { getDummyData, DataRecord } from "./dummy-data.js";
 
@@ -87,6 +81,36 @@ export default class RegulationsImport extends LitElement {
 
   render(): TemplateResult {
     return html`${this.table}
-      <button @click=${this.changeSource}>Change source</button>`;
+      <div class="uk-margin">
+        <label id="label-source-entity">Source Entity</label>
+        <select id="select-source" class="uk-select">
+          ${map(this.headers, (header) =>
+            header !== this.targetEntity
+              ? html`<option value="${header}">${header}</option>`
+              : html``
+          )}
+        </select>
+        <label id="label-source-entity">Source Entity</label>
+        <select id="select-target" class="uk-select">
+          ${map(this.headers, (header) =>
+            header !== this.sourceEntity
+              ? html`<option value="${header}">${header}</option>`
+              : html``
+          )}
+        </select>
+        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+          XXX Unknown entities
+          <label
+            ><input class="uk-radio" type="radio" name="radio2" checked />
+            Ignore</label
+          >
+          <label
+            ><input class="uk-radio" type="radio" name="radio2" /> Create</label
+          >
+          <label
+            ><input class="uk-radio" type="radio" name="radio2" /> Custom</label
+          >
+        </div>
+      </div> `;
   }
 }
