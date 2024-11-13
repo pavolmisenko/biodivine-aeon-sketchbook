@@ -1,7 +1,9 @@
 import { css, LitElement, type TemplateResult, html, unsafeCSS } from "lit";
 import { map } from "lit/directives/map.js";
 import { customElement, state } from "lit/decorators.js";
+// Dummy and mock data
 import { getDummyData, DataRecord } from "./dummy-data.js";
+import { checkForIssues } from "./backend-mock.js";
 
 // Include the content of regulations-import.less as raw string variable.
 import style_less from "./regulations-import.less?inline";
@@ -90,7 +92,7 @@ export default class RegulationsImport extends LitElement {
               : html``
           )}
         </select>
-        <label id="label-source-entity">Source Entity</label>
+        <label id="label-target-entity">Target Entity</label>
         <select id="select-target" class="uk-select">
           ${map(this.headers, (header) =>
             header !== this.sourceEntity
